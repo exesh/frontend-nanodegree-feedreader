@@ -7,7 +7,7 @@ For testing purposes used JavaScript testing framework Jasmine (http://jasmine.g
 
 # How to run
 You can find all the files at:
-https://github.com/exesh/
+https://github.com/exesh/frontend-nanodegree-feedreader
 Download all the files and to run the application just click twise on the index.html file and the webpage will open in your default browser.
 
 # How to use
