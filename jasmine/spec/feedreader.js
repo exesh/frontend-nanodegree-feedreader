@@ -86,7 +86,7 @@ $(function() {
          * And when the second one has been loaded only then I begin the test.
          */
         beforeEach(function(done) {
-                loadFeed(0)
+                loadFeed(0);
                 loadFeed(1,done);
         });
         it('content changes', function(done) {
