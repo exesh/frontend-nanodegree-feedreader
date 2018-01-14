@@ -57,7 +57,7 @@ $(function() {
           */
         it('menu changes visibility', function() {
             $('.menu-icon-link').click();
-            expect($('body').hasClass("")).toBe(true);
+            expect($('body').hasClass("menu-hidden")).toBe(false);
             $('.menu-icon-link').click();
             expect($('body').hasClass("menu-hidden")).toBe(true);
         });
@@ -71,9 +71,8 @@ $(function() {
         beforeEach(function(done) {
             loadFeed(0, done);
         });
-        it('loadFeed completes', function(done) {
-            expect($('.feed > .entry-link > .entry').html()).toBeTruthy();
-            done();
+        it('loadFeed completes', function() {
+            expect($('.feed .entry').html()).toBeTruthy();
         });
 
     });
@@ -85,13 +84,18 @@ $(function() {
          * I run second function for another rss. 
          * And when the second one has been loaded only then I begin the test.
          */
+        var loadedFeed0, loadedFeed1;
         beforeEach(function(done) {
-                loadFeed(0);
-                loadFeed(1,done);
+            loadFeed(0, function () {
+                loadedFeed0 = $('.feed').html();
+                loadFeed(1, function () {
+                    loadedFeed1 = $('.feed').html();
+                    done();
+                });
+            });
         });
-        it('content changes', function(done) {
-            expect($('.feed .entry')[0].innerText).not.toBe($('.feed .entry')[1].innerText);
-            done();
+        it('content changes', function() {
+            expect(loadedFeed0).not.toBe(loadedFeed1);
         });
     });
 }());
